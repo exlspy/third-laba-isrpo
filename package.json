@@ -1,0 +1,64 @@
+{
+  "name": "for-generator",
+  "displayName": "For Generator",
+  "description": "Генерация циклов for для Python на основе переменных из открытого файла",
+  "version": "0.1.0",
+  "publisher": "gayzullina",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "forGenerator.insertLoop",
+        "title": "For Generator: Вставить цикл for"
+      },
+      {
+        "command": "forGenerator.wrapSelection",
+        "title": "For Generator: Обернуть выделенное в цикл for"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "forGenerator.insertLoop",
+        "key": "ctrl+alt+f",
+        "when": "editorTextFocus && editorLangId == python"
+      },
+      {
+        "command": "forGenerator.wrapSelection",
+        "key": "ctrl+alt+w",
+        "when": "editorHasSelection && editorLangId == python"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "forGenerator.insertLoop",
+          "when": "editorLangId == python",
+          "group": "forGenerator@1"
+        },
+        {
+          "command": "forGenerator.wrapSelection",
+          "when": "editorLangId == python && editorHasSelection",
+          "group": "forGenerator@2"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.4.5"
+  }
+}
